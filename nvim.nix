@@ -56,7 +56,7 @@ pkgs:
     ];
   extraPackages = with pkgs; [
     wl-clipboard
-    luajitPackages.lua-lsp
+    lua-language-server
     rnix-lsp
   ];
 }

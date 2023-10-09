@@ -20,9 +20,9 @@ vim.o.expandtab = true
 vim.o.smartindent = true
 
 -- no less than 10 lines on screen
-vim.opt.scrolloff = 10
+vim.o.scrolloff = 10
 
 -- compatiblity/good colors
 vim.o.termguicolors = true
-    
+
 vim.o.mouse = 'a'

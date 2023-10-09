@@ -9,7 +9,7 @@ local on_attach = function(_, bufnr)
 
     bufmap('gd', vim.lsp.buf.definition)
     bufmap('gD', vim.lsp.buf.declaration)
-    bufmap('gI', vism.lsp.buf.implementation)
+    bufmap('gI', vim.lsp.buf.implementation)
     bufmap('<leader>D', vim.lsp.buf.type_declaration)
 
     bufmap('gr', require('telescope.builtin').lsp_reference)
@@ -26,17 +26,18 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-require('neodev').setup({})
+
+require("neodev").setup({})
 require('lspconfig').lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
         root_dir = function()
         return vim.loop.cwd()
     end,
-    cmd = { "lua-lsp" },
+    cmd = { "lua-language-server" },
     settings = {
         Lua = {
-            completion = { callSnippet = "replace" },
+            completion = { callSnippet = "Replace" },
             workspace = { checkThirdParty = false },
             telemetry = { enable = false },
         },
