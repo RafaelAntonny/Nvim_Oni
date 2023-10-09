@@ -5,6 +5,7 @@ pkgs:
   		     require("onivim")
              vim.cmd("colorscheme kanagawa")
              require("nvim-autopairs").setup {}
+             require("colorizer").setup {}
   		     print('hello')
   		   '';
   plugins = with pkgs.vimPlugins;
@@ -18,7 +19,7 @@ pkgs:
 
       #visual
       kanagawa-nvim
-      barbar-nvim
+      bufferline-nvim
       nvim-tree-lua
       nvim-web-devicons
       lualine-nvim
@@ -28,6 +29,9 @@ pkgs:
       #telescope
       plenary-nvim
       telescope-nvim
+
+      #budeletion without messing up window layout
+      nvim-bufdel
 
       #github
       gitsigns-nvim

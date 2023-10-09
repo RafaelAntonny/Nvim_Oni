@@ -1,9 +1,8 @@
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+-- leave here cause something breaks, if this file doesn't load you can still use netwr
 
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
 
 -- NvimTree always open
 local function open_nvim_tree(data)
@@ -25,11 +24,28 @@ end
 -- empty setup using defaults
 require("nvim-tree").setup({
     view = {
-        width = 30,
+        width = 25,
     },
+    sync_root_with_cwd = true,
     renderer = {
         group_empty = true,
+        indent_width = 1,
+        root_folder_label = false,
+        highlight_git = true,
+        indent_markers = {
+            enable = true,
+            inline_arrows = true,
+        },
+        icons = {
+            show = {
+                folder_arrow = false,
+                git = false,
+            },
+        },
     },
+    git = {
+        show_on_dirs = false;
+    }
 })
 
 -- NvimTree opens when I enter nvim
