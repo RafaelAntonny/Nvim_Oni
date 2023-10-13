@@ -35,7 +35,7 @@ require('lualine').setup {
         "NvimTree"
     },
     always_divide_middle = false,
-    globalstatus = false,
+    globalstatus = true,
     refresh = {
       statusline = 1000,
     }
@@ -50,7 +50,7 @@ require('lualine').setup {
     },
     lualine_b = {'branch',
         {'diff',
-            symbols = {added = '  ', modified = '  ', removed = '  '}
+            symbols = {added = ' ', modified = ' ', removed = ' '}
         }
     },
     lualine_c = {},

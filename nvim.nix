@@ -1,11 +1,9 @@
-pkgs: 
+pkgs: #vim.opt.fillchars = 'eob: ' <-- changes eob from ~ to spaces (works better with opacity)
 { 
   enable = true; 
   extraLuaConfig = ''
   		     require("onivim")
-             vim.cmd("colorscheme kanagawa")
-             require("nvim-autopairs").setup {}
-             require("colorizer").setup {}
+             vim.opt.fillchars = 'eob: '
   		     print('hello')
   		   '';
   plugins = with pkgs.vimPlugins;
@@ -17,7 +15,7 @@ pkgs:
   in 
     [
 
-      #visual
+      ### VISUAL ###
       kanagawa-nvim
       bufferline-nvim
       nvim-tree-lua
@@ -25,12 +23,13 @@ pkgs:
       lualine-nvim
       nvim-colorizer-lua # show colors that were written
       indent-blankline-nvim # show indentation lines
+      dressing-nvim #makes the pop uis for input and select look nicer
 
       #telescope
       plenary-nvim
       telescope-nvim
 
-      #budeletion without messing up window layout
+      #bufdeletion without messing up window layout
       nvim-bufdel
 
       #github
@@ -43,7 +42,16 @@ pkgs:
       nvim-cmp
       cmp-nvim-lsp
       cmp_luasnip
+      cmp-path
+      cmp-buffer
+      
+      #discord
+      presence-nvim
+
+      #auto pairs of special characters and tags
       nvim-autopairs
+      nvim-ts-autotag
+
 
       #snippets
       friendly-snippets
@@ -62,5 +70,7 @@ pkgs:
     wl-clipboard
     lua-language-server
     rnix-lsp
+    nodePackages.vscode-langservers-extracted
+    nodePackages.typescript-language-server
   ];
 }

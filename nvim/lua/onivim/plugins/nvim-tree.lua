@@ -3,7 +3,6 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- leave here cause something breaks, if this file doesn't load you can still use netwr
 
-
 -- NvimTree always open
 local function open_nvim_tree(data)
 

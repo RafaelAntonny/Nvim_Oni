@@ -4,7 +4,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- SPACE + E to go to nvimtree if nvimtree not open then open nvimtree and then focus
+-- SPACE + e + f to toggle nvim tree (open/close)
+vim.api.nvim_set_keymap("n", "<leader>ef", ":NvimTreeToggle<cr>", { silent = true, noremap = true })
+-- SPACE + e to focus nvim-tree, if nvim-tree is not open the it will open it
 vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeFocus<cr>", { silent = true, noremap = true })
 
 -- move between buffers (bufferline specific)
