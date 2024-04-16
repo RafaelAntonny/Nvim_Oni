@@ -35,6 +35,8 @@ vim.o.scrolloff = 10
 -- compatiblity/good colors
 vim.o.termguicolors = true
 
+vim.o.mousemoveevent = true
+
 vim.o.mouse = 'a'
 
 -- makes things show in one long line instead of wrapping (super annoying btw)

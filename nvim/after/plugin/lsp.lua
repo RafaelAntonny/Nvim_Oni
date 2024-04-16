@@ -59,7 +59,7 @@ require('lspconfig').cssls.setup{
 require('lspconfig').tsserver.setup {
     capabilities = capabilities
 }
-require('lspconfig').rnix.setup {
+require('lspconfig').nixd.setup {
     on_attach = on_attach,
     capabilities = capabilities,
 }
