@@ -6,7 +6,6 @@
         extraLuaConfig = ''
             require("onivim")
             vim.opt.fillchars = 'eob: '
-            print('hello')
             '';
         plugins = with pkgs.vimPlugins;
         let 
@@ -26,6 +25,8 @@
             nvim-colorizer-lua # show colors that were written
             indent-blankline-nvim # show indentation lines
             dressing-nvim #makes the pop uis for input and select look nicer
+            fidget-nvim #lsp notifications
+            lspkind-nvim #nice icons for cmp
             #telescope
                 plenary-nvim
                 telescope-nvim
@@ -43,7 +44,6 @@
                 cmp-buffer
             #discord
                 presence-nvim
-
             #auto pairs of special characters and tags
                 nvim-autopairs
                 nvim-ts-autotag
@@ -60,10 +60,11 @@
                 ];
         extraPackages = with pkgs; [
             wl-clipboard
-                lua-language-server
-                nixd
-                nodePackages.vscode-langservers-extracted
-                nodePackages.typescript-language-server
+            lua-language-server
+            nixd
+            nodePackages.vscode-langservers-extracted
+            nodePackages.typescript-language-server
+            emmet-language-server
         ];
     };
 }

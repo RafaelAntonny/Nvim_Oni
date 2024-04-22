@@ -35,6 +35,10 @@ vim.o.scrolloff = 10
 -- compatiblity/good colors
 vim.o.termguicolors = true
 
+-- hides the mode that shows up in the cmdline, it is redundant since lualine already shows us which mode we are in
+vim.opt.showmode = false
+
+-- makes it so we can have hover events from bufferline
 vim.o.mousemoveevent = true
 
 vim.o.mouse = 'a'

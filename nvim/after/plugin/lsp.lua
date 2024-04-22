@@ -1,11 +1,11 @@
 local on_attach = function(_, bufnr)
 
     local bufmap = function(keys, func)
-        vim.keymaps.set('n', keys, func, {buffer = bufnr })
+        vim.keymap.set('n', keys, func, { buffer = bufnr, silent = true})
     end
 
-    bufmap('<leade>r', vim.lsp.rename)
-    bufmap('<leader>a', vim.lsp.code_action)
+    bufmap('<leader>r', vim.lsp.buf.rename)
+    bufmap('<leader>f', vim.lsp.buf.code_action)
 
     bufmap('gd', vim.lsp.buf.definition)
     bufmap('gD', vim.lsp.buf.declaration)
@@ -51,13 +51,18 @@ require('lspconfig').lua_ls.setup {
 }
 
 require('lspconfig').html.setup {
-    capabilities = capabilities
+    capabilities = capabilities,
 }
 require('lspconfig').cssls.setup{
-    capabilities = capabilities
+    capabilities = capabilities,
 }
 require('lspconfig').tsserver.setup {
-    capabilities = capabilities
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
+require('lspconfig').emmet_language_server.setup {
+    capabilities = capabilities,
+    filetypes = { 'css', 'html', 'javascript', 'javascriptreact', 'typescriptreact'},
 }
 require('lspconfig').nixd.setup {
     on_attach = on_attach,

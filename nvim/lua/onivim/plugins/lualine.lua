@@ -20,56 +20,57 @@ require('lualine').setup {
         icons_enabled = true,
         theme = 'kanagawa',
         component_separators = { left = '', right = ''},
-            section_separators = { left = '', right = ''},
-            disabled_filetypes = {},
-            ignore_focus = {
-                "NvimTree"
-            },
-            always_divide_middle = false,
-            refresh = {
-                statusline = 1000,
+        section_separators = { left = '', right = ''},
+        disabled_filetypes = {},
+        ignore_focus = {
+            "NvimTree"
+        },
+        always_divide_middle = false,
+        refresh = {
+            statusline = 1000,
+        }
+    },
+
+    sections = {
+        lualine_a = {
+            {
+                'mode',
+                icons_enabled = true,
+                icon = ''
             }
         },
-
-        sections = {
-            lualine_a = {
-                {
-                    'mode',
-                    icons_enabled = true,
-                    icon = ''
-                }
+        lualine_b = {
+            'branch',
+        },
+        lualine_c = {
+            {
+                'diff',
+                symbols = {added = ' ', modified = ' ', removed = ' '}
+            }
+        },
+        lualine_x = {
+            {
+            'diagnostics',
+            sources = { 'nvim_lsp' },
+            sections = { 'error', 'warn', 'info', 'hint'},
+            symbols = {error = ' ', warn = ' ', info = '󰋼 ', hint = '󰛨 '},
+            update_in_insert = true,
+            }
+        },
+        lualine_y = {
+            {
+                lsp_name,
+                icon = ' LSP:',
             },
-            lualine_b = {
-                'branch',
-                {
-                    'diff',
-                    symbols = {added = ' ', modified = ' ', removed = ' '}
-                }
-            },
-            lualine_c = {},
-            lualine_x = {},
-            lualine_y = {
-                {
-                    'diagnostics',
-                    sources = { 'nvim_lsp' },
-                    sections = { 'error', 'warn', 'info', 'hint'},
-                        symbols = {error = ' ', warn = ' ', info = '󰋼 ', hint = '󰛨 '},
-                        update_in_insert = true,
-                    },
-                    {
-                        lsp_name,
-                        icon = ' LSP:',
-                    },
-                    'filetype',
-                },
-                lualine_z = {'location'},
-            },
-            inactive_sections = {
-                lualine_a = {},
-                lualine_b = {},
-                lualine_c = {'filename'},
-                lualine_x = {},
-                lualine_y = {},
-                lualine_z = {}
-            },
-        }
+        },
+        lualine_z = {'location'},
+    },
+    inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {},
+        lualine_y = {},
+        lualine_z = {}
+    },
+}

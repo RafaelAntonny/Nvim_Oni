@@ -1,5 +1,6 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
+local lspkind = require('lspkind')
 
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
@@ -42,7 +43,19 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        { name = 'buffer'},
         { name = 'path'},
-    })
+        { name = 'buffer'},
+    }),
+    formatting = {
+        format = lspkind.cmp_format({
+            maxwidth = 50,
+            ellipsis_char = "...",
+            function (entry, vim_item)
+                if entry.source.name == 'nvim_lsp' then
+                    vim_item.dup = 0
+                end
+                return vim_item
+            end,
+        }),
+    },
 })
