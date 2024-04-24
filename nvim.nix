@@ -1,8 +1,9 @@
-{pkgs, ...}: #vim.opt.fillchars = 'eob: ' <-- changes eob from ~ to spaces (works better with opacity)
+{pkgs, lib, ...}: #vim.opt.fillchars = 'eob: ' <-- changes eob from ~ to spaces (works better with opacity)
 
 {
     programs.neovim = {
         enable = true;
+        defaultEditor = true;
         extraLuaConfig = ''
             require("onivim")
             vim.opt.fillchars = 'eob: '
@@ -12,6 +13,15 @@
             onivim = pkgs.vimUtils.buildVimPlugin { #can also fetch from github
                 name = "onivim";
                 src = ./nvim;
+            };
+            fromGithub = rev: ref: repo: pkgs.vimUtils.buildVimPlugin { #this is a interface that fetches from github
+                pname = "${lib.strings.sanitizeDerivationName repo}";
+                version = ref;
+                src = builtins.fetchGit {
+                    url = "http://github.com/${repo}.git";
+                    ref = ref;
+                    rev = rev;
+                };
             };
         in 
             [
@@ -25,39 +35,41 @@
             nvim-colorizer-lua # show colors that were written
             indent-blankline-nvim # show indentation lines
             dressing-nvim #makes the pop uis for input and select look nicer
-            fidget-nvim #lsp notifications
             lspkind-nvim #nice icons for cmp
+            noice-nvim # ui overhaul
+            nvim-notify # noice requires this
+            nui-nvim # noice requires this
             #telescope
-                plenary-nvim
-                telescope-nvim
+            plenary-nvim
+            telescope-nvim
             #bufdeletion without messing up window layout
-                nvim-bufdel
+            nvim-bufdel
             #github
-                gitsigns-nvim
+            gitsigns-nvim
             #lsp
-                nvim-lspconfig
+            nvim-lspconfig
             #autocompletion
-                nvim-cmp
-                cmp-nvim-lsp
-                cmp_luasnip
-                cmp-path
-                cmp-buffer
+            nvim-cmp
+            cmp-nvim-lsp
+            cmp_luasnip
+            cmp-path
+            cmp-buffer
             #discord
-                presence-nvim
+            presence-nvim
             #auto pairs of special characters and tags
-                nvim-autopairs
-                nvim-ts-autotag
+            nvim-autopairs
+            nvim-ts-autotag
             #snippets
-                friendly-snippets
-                luasnip
+            friendly-snippets
+            luasnip
             #neodev to see vim configs/apis
-                neodev-nvim
+            neodev-nvim
             #treesitter
-                nvim-treesitter.withAllGrammars
+            nvim-treesitter.withAllGrammars
 
-                onivim # my config file
+            onivim # my config file
 
-                ];
+            ];
         extraPackages = with pkgs; [
             wl-clipboard
             lua-language-server

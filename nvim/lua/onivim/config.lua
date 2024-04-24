@@ -36,7 +36,10 @@ vim.o.scrolloff = 10
 vim.o.termguicolors = true
 
 -- hides the mode that shows up in the cmdline, it is redundant since lualine already shows us which mode we are in
-vim.opt.showmode = false
+vim.o.showmode = false
+
+-- doing this to hide the original cmd line since we are already using a pop up from fine cmdline
+vim.o.cmdheight = 0
 
 -- makes it so we can have hover events from bufferline
 vim.o.mousemoveevent = true
