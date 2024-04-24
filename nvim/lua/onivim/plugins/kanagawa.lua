@@ -14,17 +14,23 @@ require('kanagawa').setup({
         palette = {},
         theme = { wave = {}, lotus = {}, dragon = {},
             all = {
-                diag = {
-                    error = "#C34043",
-                    warning = "#DCA561",
-                    info = "#957FB8",
-                }
-            } },
+                ui = {
+                    bg_gutter = "none",
+                },
+            }
+        },
     },
     overrides = function(colors) -- add/modify highlights
+        local util = require("kanagawa.lib.color")
+        local theme_colors = colors.theme
+
         return {
-            BufferLineIndicatorSelected = { fg = colors.theme.syn.preproc },
-            NvimTreeNormal = { bg = colors.theme.ui.bg_m1 },
+            BufferLineIndicatorSelected = { fg = theme_colors.syn.preproc },
+            NvimTreeNormal = { bg = theme_colors.ui.bg_m1 },
+            DiagnosticVirtualTextError = { bg = util(theme_colors.diag.error):blend(theme_colors.ui.bg, 0.96):to_hex(), fg = theme_colors.diag.error},
+            DiagnosticVirtualTextWarn = { bg = util(theme_colors.diag.warning):blend(theme_colors.ui.bg, 0.96):to_hex(), fg = theme_colors.diag.warning},
+            DiagnosticVirtualTextInfo = { bg = util(theme_colors.diag.info):blend(theme_colors.ui.bg, 0.96):to_hex(), fg = theme_colors.diag.info},
+            DiagnosticVirtualTextHint = { bg = util(theme_colors.diag.hint):blend(theme_colors.ui.bg, 0.96):to_hex(), fg = theme_colors.diag.hint},
         }
     end,
     theme = "wave",              -- Load "wave" theme when 'background' option is not set
